@@ -46,8 +46,51 @@ Steps:
     $ bundle install
     ```
     some error happened.
+    ```bash
+    $ bundle install
+    [!] There was an error parsing `Gemfile`: Illformed requirement ["~> GITHUB-PAGES-VERSION"]. Bundler cannot continue.
+    #  from /home/masjams/code/github/ramadhan-1443-diary/docs/Gemfile:11
+    #  -------------------------------------------
+    #  # gem "jekyll", "~> 4.2.2"
+    >  gem "github-pages", "~> GITHUB-PAGES-VERSION", group: :jekyll_plugins
+    #  # This is the default theme for new Jekyll sites. You may change this to anything you like.
+    ```
 
-    code `"~> GITHUB-PAGES-VERSION"` made error.
+    code `"~> GITHUB-PAGES-VERSION"` made error. Follow instruction from [github pages discussion](https://github.com/github/pages-gem/issues/351), I changed `"~> GITHUB-PAGES-VERSION"` to `"104"`, error on top is disappear, but got new one 😅.
+    ```
+    $ bundle install
+    Fetching gem metadata from https://rubygems.org/...........
+    Resolving dependencies...
+    Bundler could not find compatible versions for gem "jekyll-feed":
+      In Gemfile:
+        jekyll-feed (~> 0.12)
+
+        github-pages (= 104) was resolved to 104, which depends on
+      jekyll-feed (= 0.8.0)
+    ```
+    I don't know what going on. Looks like now error in _jekyll-feed_. So try changed `"104'` to `"0.8.0"` suitable with the _jekyll-feed_ which made error. The error is disappear, but got new error about github pages.
+    ```
+    $ bundle install
+    Fetching gem metadata from https://rubygems.org/...........
+    Could not find gem 'github-pages (= 0.8.0)' in rubygems repository https://rubygems.org/ or installed locally.
+
+    The source contains the following gems matching 'github-pages':
+      * github-pages-1
+      * github-pages-3
+      * github-pages-4
+      ---
+      * github-pages-225
+    ```
+    I thought to use the latest github-pages version on. So, i choose to change again the line with
+    ```
+    >  gem "github-pages", "225", group: :jekyll_plugins
+    ```
+    And Yeay Succesfully appear.
+
+4. Deploying in Github Pages \
+  After struggling in step 12. I continue step in [github docs tutorial](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll). Some different step is in _Setting -> Source_. I change from `branch: gh-pages >> /` to `branch: gh-pages >> /docs` suit with structure of this repository. \
+  And again trouble happened. The CSS not working 😥.
+  ![CSS unloaded](/assets/images/Screenshot2022-04-04%20at%2002-21-41%20Your%20awesome%20title.png)
 
 
 
