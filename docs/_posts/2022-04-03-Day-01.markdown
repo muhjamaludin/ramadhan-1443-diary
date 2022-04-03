@@ -1,0 +1,57 @@
+---
+layout: post
+title: "Day 01"
+date: 2022-04-03 13:00 +0700
+categories: diary
+---
+
+## Deployment this site with [Jekyll](https://jekyllrb.com)
+Reason why I choose this tools than others like (hugo, docusaurus, etc) to manage my note during ramadhan this year - insyaAllah - because jekyll bundle and support by github. You can get the tutorial officially from [Github docs](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll) to serve the deployment. I use it too.
+
+### The steps I did until this site was deployed
+1. Install Ruby & Gem \
+I use Windows SubsystemLinux in my local development and I didn't install ruby at all. So the first things is installing Ruby because Jekyll using gem package manager which one comes from ruby. I use docs from [ruby-lang.org/id](https://www.ruby-lang.org/id/documentation/installation/#apt) to install in my Debian WSL.
+```bash
+$ sudo apt install ruby-full
+```
+Booms. You have installed Ruby and the package manager's `Gem`. Verify instalation with versioning.
+```
+$ ruby --version
+ruby 2.7.4p191 (2021-07-07 revision a21a3b7d23) [x86_64-linux-gnu]
+$ gem --version
+3.2.5
+```
+
+2. Installing Jekyll and Bundler \
+After ruby and gem ready. Now, I must install __jekyll__ and __bundle__ via **gem**. 
+```
+$ gem install jekyll bundler
+```
+But, I got error 'FilePermissionError'.
+```
+ERROR:  While executing gem ... (Gem::FilePermissionError)
+    You don't have write permissions for the /var/lib/gems/2.7.0 directory.
+```
+Hmmm, should I installing with **Sudo** ? I think that is not a good idea. Installing _jekyll_ and _bundler_ must not in Sudo. It's like `npm install <package>` that not required **Sudo**. I found solution in [stackoverflow](https://stackoverflow.com/questions/37720892/you-dont-have-write-permissions-for-the-var-lib-gems-2-3-0-directory) 
+![Stackoverflow](/assets/images/Screenshot%202022-04-04%20at%2001-52-09%20You%20don't%20have%20write%20permissions%20for%20the%20_var_lib_gems_2.3.0%20directory.png){:class="img-responsive"}.
+I must change the _GEM HOME_, export ruby bin and activate again `.bashrc`.
+
+3. Serve Jekyll in local follow [setting-up-a-github-pages-site-with-jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll) tutorial \
+I never use jekyll to make static site generator before, so I choose this official tutorial to guide me deploy jekyll SSG with Github Actions. \
+Steps: 
+  - Creating repository in github ✅
+  - Creating your site ⚔ \
+    step 1 - 11 is easy, but in step 12 
+    ```
+    $ bundle install
+    ```
+    some error happened.
+
+    code `"~> GITHUB-PAGES-VERSION"` made error.
+
+
+
+---
+
+## Adam Air
+### Asmara
