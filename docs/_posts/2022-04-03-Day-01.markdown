@@ -33,7 +33,15 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
     You don't have write permissions for the /var/lib/gems/2.7.0 directory.
 ```
 Hmmm, should I installing with **Sudo** ? I think that is not a good idea. Installing _jekyll_ and _bundler_ must not in Sudo. It's like `npm install <package>` that not required **Sudo**. I found solution in [stackoverflow](https://stackoverflow.com/questions/37720892/you-dont-have-write-permissions-for-the-var-lib-gems-2-3-0-directory) 
-![Stackoverflow](/assets/images/Screenshot%202022-04-04%20at%2001-52-09%20You%20don't%20have%20write%20permissions%20for%20the%20_var_lib_gems_2.3.0%20directory.png){:class="img-responsive"}.
+
+{% assign image_files = site.static_files | where: "image", true %}
+{% for myimage in image_files %}
+  {% if myimage.path contains 'var_lib_gems_2.3.0' %}
+    ![Permission Error]({{ myimage.path }})
+  {% endif %}
+{% endfor %}
+
+.
 I must change the _GEM HOME_, export ruby bin and activate again `.bashrc`.
 
 3. Serve Jekyll in local follow [setting-up-a-github-pages-site-with-jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll) tutorial \
@@ -89,12 +97,33 @@ Steps:
 
 4. Deploying in Github Pages \
   After struggling in step 12. I continue step in [github docs tutorial](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll). Some different step is in _Setting -> Source_. I change from `branch: gh-pages >> /` to `branch: gh-pages >> /docs` suit with structure of this repository. \
-  And again trouble happened. The CSS not working 😥.
-  ![CSS unloaded](/assets/images/Screenshot2022-04-04%20at%2002-21-41%20Your%20awesome%20title.png)
+  {% assign image_files = site.static_files | where: "image", true %}
+  {% for myimage in image_files %}
+    {% if myimage.path contains 'diary' %}
+      ![Source changed]({{ myimage.path }}) \
+    The site is ready in [ramadhan 1443 diary](https://muhjamaludin.github.io/ramadhan-1443-diary/) \
+    And again trouble happened. The CSS not working 😥.
+    {% endif %}
+    {% if myimage.path contains 'Your awesome title' %}
+      ![CSS Not Working]({{ myimage.path }})
+    {% endif %}
+  {% endfor %}
+  The solution is to parse baseUrl in `_config.yml` from `baseUrl: ""` to
+  ```
+  > baseUrl: /
+  ```
+  Good Solving. Now The site is fully working.
 
-
+5. Writing a post
+  After all the deployment works. Final step to fill the content, which is this is a main goals why I develop this project. 😁😁. Standar how to write the source code I get from [official documentation jekyll](https://jekyllrb.com/docs). Nice!.
 
 ---
 
-## Adam Air
-### Asmara
+## CheckiO
+CheckiO is coding games and programming challenges. I have some exercise that I solve before. And this day I just continue my challenge on checkiO.
+I have some exercise that I solve in this day. There are from [Typescript Checkio](https://js.checkio.org/) in [Initiation Station](https://js.checkio.org/station/initiation/). \
+Two exercise I solve is:
+- End Zeros
+- All Upper I
+- Correct Sentence
+Join me to play this game [Go!](https://js.checkio.org/user/J_Muhammad/).
