@@ -34,12 +34,7 @@ ERROR:  While executing gem ... (Gem::FilePermissionError)
 ```
 Hmmm, should I installing with **Sudo** ? I think that is not a good idea. Installing _jekyll_ and _bundler_ must not in Sudo. It's like `npm install <package>` that not required **Sudo**. I found solution in [stackoverflow](https://stackoverflow.com/questions/37720892/you-dont-have-write-permissions-for-the-var-lib-gems-2-3-0-directory) 
 
-{% assign image_files = site.static_files | where: "image", true %}
-{% for myimage in image_files %}
-  {% if myimage.path contains 'var_lib_gems_2.3.0' %}
-    ![Permission Error]({{ myimage.path }})
-  {% endif %}
-{% endfor %}
+<img src="{{ site.baseurl }}assets/img/Screenshot 2022-04-04 at 01-52-09 You don't have write permissions for the _var_lib_gems_2.3.0 directory.png" alt="permission error">
 
 .
 I must change the _GEM HOME_, export ruby bin and activate again `.bashrc`.
@@ -97,17 +92,10 @@ Steps:
 
 4. Deploying in Github Pages \
   After struggling in step 12. I continue step in [github docs tutorial](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll). Some different step is in _Setting -> Source_. I change from `branch: gh-pages >> /` to `branch: gh-pages >> /docs` suit with structure of this repository. \
-  {% assign image_files = site.static_files | where: "image", true %}
-  {% for myimage in image_files %}
-    {% if myimage.path contains 'diary' %}
-      ![Source changed]({{ myimage.path }}) \
-    The site is ready in [ramadhan 1443 diary](https://muhjamaludin.github.io/ramadhan-1443-diary/) \
-    And again trouble happened. The CSS not working 😥.
-    {% endif %}
-    {% if myimage.path contains 'Your awesome title' %}
-      ![CSS Not Working]({{ myimage.path }})
-    {% endif %}
-  {% endfor %}
+  <img src="{{site.baseurl}}assets/img/Screenshot 2022-04-04 at 02-16-38 muhjamaludin_ramadhan-1443-diary.png" alt="Source changed"> \
+  
+  And again trouble happened. The CSS not working 😥. \
+  <img src="{{site.baseurl}}assets/img/Screenshot 2022-04-04 at 02-21-41 Your awesome title.png" alt="success deployed in github pages">
   The solution is to parse baseUrl in `_config.yml` from `baseUrl: ""` to
   ```
   > baseUrl: /

@@ -7,12 +7,30 @@ categories: jekyll
 
 # Fix rendering Picture in Jekyll
 I think the picture can appear on markdown format. In local development, it is solve, but when I publish, the github pages won't appear my picture. Why ?
-{% assign image_files = site.static_files | where: "image", true %}
-{% for myimage in image_files %}
-  {% if myimage.path contains '01' %}
-    <img src="{{ myimage.path }}" alt="Broken Picture">
-  {% endif %}
-{% endfor %}
+<img src="{{ site.baseurl }}assets/img/Screenshot 2022-04-04 at 16-12-18 Day 01.png" alt="Not appear picture githu pages">
+The code that I follow before from [docs static-files](http://jekyllrb.com/docs/static-files/). I am using for loop and conditional to render the path of the images.
+```ruby
+{ % assign image_files = site.static_files | where: "image", true % }
+{ % for myimage in image_files % }
+  { % if myimage.path contains 'var_lib_gems' % }
+    ![Permission Error]({{ myimage.path }})
+  { % endif % }
+{ % endfor % }
+```
+Appear in local but not in github pages. After browsing solution, found [stackoverflow](https://stackoverflow.com/questions/28820917/jekyll-on-github-pages-not-displaying-images-and-has-broken-links) that refer to [docs jekyll for github pages](http://jekyllrb.com/docs/github-pages/#project-page-url-structure). Instead using for loop and find path, you can use directly from `site.baseurl` like this
+```
+<img src="{ { sites.baseurl } }assets/img/image.jgp" alt="load image">
+```
 
 # Update Blog UI
-The first day is just to serve platform that I can write my notes. The second day I want to update the UI, name, title etc. In day 1 I almost used default settings from jekyll tutorial. 😁. \
+<img src="{{ site.baseurl }}assets/img/Screenshot 2022-04-04 at 16-33-54 Your awesome title.png" alt="first day UI">
+The first day is just to serve platform that I can write my notes. Look on top, appeance if very minimalist and default. The second day I want to update the UI, name, title etc. In day 1 I almost used default settings from jekyll tutorial. 😁
+1. Change title
+  - your awesome title >> Masjams Ramadhan 1443 Diary \
+  Title refect my name and content of the blog.
+2. Change convention name each day
+  - Day 01 >> 1 Ramadhan 1443 \
+  It is look like more serious title and easy to understand the date. I think 😂.
+3. Update email
+  - your_email@example >> 74maludin@gmail.com \
+  from default to my currenctly active my email 💪.
