@@ -1,0 +1,18 @@
+---
+layout: post
+title: "2 Ramadhan 1443 H"
+date: 2022-04-04 16:19 +0700
+categories: jekyll
+---
+
+# Fix rendering Picture in Jekyll
+I think the picture can appear on markdown format. In local development, it is solve, but when I publish, the github pages won't appear my picture. Why ?
+{% assign image_files = site.static_files | where: "image", true %}
+{% for myimage in image_files %}
+  {% if myimage.path contains '01' %}
+  {% endif %}
+{% endfor %}
+    <img src="/assets/img/Screenshot 2022-04-04 at 16-12-18 Day 01.png" alt="Broken Picture">
+
+# Update Blog UI
+The first day is just to serve platform that I can write my notes. The second day I want to update the UI, name, title etc. In day 1 I almost used default settings from jekyll tutorial. 😁. \
